@@ -1,2 +1,2 @@
 # datascience
-Data Science Repository
+This is a data science repository for python.
