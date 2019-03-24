@@ -1,6 +1,7 @@
 from sklearn import tree
 from sklearn import ensemble
 from sklearn import gaussian_process
+from sklearn.metrics import accuracy_score
 
 # [height, weight, shoe size]
 X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37],
@@ -21,12 +22,26 @@ etc.fit(X, Y)
 rclf.fit(X, Y)
 gpclf.fit(X, Y)
 
-prediction = clf.predict([[190, 70, 43]])
-etPrediction = etc.predict([[190, 70, 43]])
-rcPrediction = rclf.predict([[190, 70, 43]])
-gpPrediction = gpclf.predict([[190, 70, 43]])
+_X = [[184, 84, 44], [198, 92, 48], [183, 83, 44], [166, 47, 36], [170, 60, 38], [172, 64, 39], [182, 80, 42],
+      [180, 80, 43]]
+_Y = ['male', 'male', 'male', 'female', 'female', 'female', 'male', 'male']
 
-print(prediction)
-print(etPrediction)
-print(rcPrediction)
-print(gpPrediction)
+prediction = clf.predict(_X)
+acc_dectree = accuracy_score(_Y, prediction)
+
+print("prediction for decision tree is:" + str(prediction) + " and accuracy is:" + str(acc_dectree))
+
+etPrediction = etc.predict(_X)
+acc_extree = accuracy_score(_Y, etPrediction)
+
+print("prediction for extra tree is:" + str(etPrediction) + " and accuracy is:" + str(acc_extree))
+
+rcPrediction = rclf.predict(_X)
+acc_ranfor = accuracy_score(_Y, rcPrediction)
+
+print("prediction for random forest is:" + str(rcPrediction) + " and accuracy is:" + str(acc_ranfor))
+
+gpPrediction = gpclf.predict(_X)
+acc_gaupro = accuracy_score(_Y, gpPrediction)
+
+print("prediction for gaussian process is:" + str(gpPrediction) + " and accuracy is:" + str(acc_gaupro))
